@@ -13,7 +13,8 @@ class Plate extends Model {
         id: { type: 'integer' },
         name: { type: 'string', minLength: 1, maxLength: 255},
         description: { type: 'string', minLength: 1, maxLength: 500},
-        picture: { type: 'string', minLength: 1, maxLength: 255}
+        picture: { type: 'string', minLength: 1, maxLength: 1000},
+        price: { type: 'integer' }
       }
     }
   };
