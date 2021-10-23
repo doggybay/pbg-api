@@ -7,7 +7,7 @@ exports.getAllPlates = async (req, res) => {
 };
 
 exports.getOnePlate = async (req, res) => {
-  const plateId = req.parms.id;
+  const plateId = req.params.id;
   const plate = await Plate.query().findById(plateId);
 
   res.json(plate);
@@ -22,8 +22,9 @@ exports.addOnePlate = async (req, res) => {
 };
 
 exports.updateOnePlate = async (req, res) => {
-  const plateToUpdate = { ...req.body };
-  const plateId = req.parms.id;
+  const time = new Date;
+  const plateToUpdate = { ...req.body, updated_at: time };
+  const plateId = req.params.id;
 
   const updatedPlate = await Plate.query().findById(plateId).patch(plateToUpdate).returning('*');
   
@@ -31,7 +32,7 @@ exports.updateOnePlate = async (req, res) => {
 };
 
 exports.deleteOnePlate = async (req, res) => {
-  const plateId = req.parms.id;
+  const plateId = req.params.id;
 
   const deletedPlate = await Plate.query().deleteById(plateId).returning('*');
 
