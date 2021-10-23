@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('addresses', table => {
     table.increments();
-    table.integer('customer_id').references('customer.id').notNullable().onDelete('CASCADE');
+    table.integer('customer_id').references('customers.id').notNullable().onDelete('CASCADE');
     table.string('st_address').notNullable();
     table.string('opt_address');
     table.string('city').notNullable();
