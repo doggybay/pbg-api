@@ -13,7 +13,7 @@ class Order extends Model {
         id: { type: 'integer' },
         customer_id: { type: 'integer' },
         plate_id: { type: 'integer' },
-        total: { type: 'integer' },
+        total: { type: 'float' },
         quantity: { type: 'integer' }
       }
     }

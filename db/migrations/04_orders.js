@@ -3,7 +3,7 @@ exports.up = function(knex) {
     table.increments();
     table.integer('customer_id').notNullable();
     table.integer('plate_id').notNullable();
-    table.integer('total').notNullable();
+    table.float('total').notNullable();
     table.integer('quantity').notNullable();
     table.timestamps(true, true);
   });

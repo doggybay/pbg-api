@@ -4,7 +4,7 @@ exports.up = function(knex) {
     table.string('name').notNullable();
     table.text('description').notNullable();
     table.string('picture').unique().notNullable();
-    table.integer('price').unique();
+    table.float('price').unique();
     table.timestamps(true, true);
   })
   
