@@ -11,9 +11,9 @@ class Plate extends Model {
       required: ['name', 'description', 'picture'],
       properties: {
         id: { type: 'integer' },
-        name: { type: 'string'},
-        description: { type: 'string'},
-        picture: { type: 'string'}
+        name: { type: 'string', minLength: 1, maxLength: 255},
+        description: { type: 'string', minLength: 1, maxLength: 500},
+        picture: { type: 'string', minLength: 1, maxLength: 255}
       }
     }
   };
