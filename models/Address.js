@@ -14,7 +14,7 @@ class Address extends Model {
         modelClass: Customer,
         join: {
           from: "Addresses.customer_id",
-          to: "customer.id"
+          to: "customers.id"
         }
       }
     }
@@ -27,7 +27,7 @@ class Address extends Model {
 
       properties: {
         id: { type: 'integer' },
-        user_id: { type: 'integer' },
+        customer_id: { type: 'integer' },
         st_address: { type: 'string', minLength: 1, maxLength: 255  },
         opt_address: { type: 'string', minLength: 1, maxLength: 255  },
         city: { type: 'string', minLength: 1, maxLength: 255  },

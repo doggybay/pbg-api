@@ -13,8 +13,8 @@ class Customer extends Model {
         relation: Model.HasManyRelation,
         modelClass: Address,
         join: {
-          from: 'users.id',
-          to: 'addresses.user_id'
+          from: 'customers.id',
+          to: 'addresses.customer_id'
         }
       },
       
