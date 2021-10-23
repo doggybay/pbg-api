@@ -9,7 +9,7 @@ exports.getAllCustomers = async (req, res) => {
 
 exports.getOneCustomer = async (req, res) => {
   const customerId = req.params.id;
-  const customer = await Customer.query().findById(customerId);
+  const customer = await Customer.query().findById(customerId).withGraphFetched('[address]');
 
   res.json(customer);
 };
@@ -34,7 +34,7 @@ exports.addOneCustomer = async (req, res) => {
 
   const formattedAddress = {
     ...address,
-    user_id: newCustomer.id
+    customer_id: newCustomer.id
   };
 
   await Address.query().insert(formattedAddress);
@@ -45,11 +45,37 @@ exports.addOneCustomer = async (req, res) => {
 }
 
 exports.updateOneCustomer = async (req, res) => {
+  const time = new Date;
+  const customerId = req.params.id;
+  const {first_name, last_name, email, phone, st_address, opt_address, city, state, zip_code} = req.body;
+  const customer = {
+    first_name,
+    last_name,
+    email,
+    phone,
+    updated_at: time
+  };
+  const address = {
+    st_address,
+    opt_address,
+    city,
+    state,
+    zip_code,
+    updated_at: time
+  };
+
   
+
+  await Address.query().select('customer_id').where('addresses.customer_id', '=', customerId).patch(address);
+
+  const updatedCustomer = await Customer.query().findById(customerId).patch(customer).returning('*').withGraphFetched('[address]');
+
+  res.json(updatedCustomer);
 }
 
 exports.deleteOneCustomer = async (req, res) => {
-  const customerId = req.parms.id;
+  
+  const customerId = req.params.id;
 
   const deletedAddress = await Address.query().select('customer_id').where('addresses.customer_id', '=', customerId).del().returning('*');
   const deletedCustomer = await Customer.query().deleteById(customerId).returning('*');
