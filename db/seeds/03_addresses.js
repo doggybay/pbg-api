@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('addresses').insert([
         {
-          user_id: 1,
+          customer_id: 1,
           st_address: "139 Dekoven Court",
           opt_address: "",
           city: "Manitou",
@@ -14,7 +14,7 @@ exports.seed = function(knex) {
           zip_code: 51433
         },
         {
-          user_id: 2,
+          customer_id: 2,
           st_address: "162 Veronica Place",
           opt_address: "",
           city: "Como",
@@ -22,7 +22,7 @@ exports.seed = function(knex) {
           zip_code: 62715
         },
         {
-          user_id: 3,
+          customer_id: 3,
           st_address: "387 Crystal Street",
           opt_address: "",
           city: "Alden",
@@ -30,7 +30,7 @@ exports.seed = function(knex) {
           zip_code: 42313
         },
         {
-          user_id: 4,
+          customer_id: 4,
           st_address: "981 Jackson Court",
           opt_address: "",
           city: "Ryderwood",
@@ -38,7 +38,7 @@ exports.seed = function(knex) {
           zip_code: 16651
         },
         {
-          user_id: 5,
+          customer_id: 5,
           st_address: "343 Amersfort Place",
           opt_address: "",
           city: "Sisquoc",
@@ -46,7 +46,7 @@ exports.seed = function(knex) {
           zip_code: 33110
         },
         {
-          user_id: 6,
+          customer_id: 6,
           st_address: "186 Apollo Street",
           opt_address: "",
           city: "Kohatk",
@@ -54,7 +54,7 @@ exports.seed = function(knex) {
           zip_code: 47581
         },
         {
-          user_id: 7,
+          customer_id: 7,
           st_address: "438 Crawford Avenue",
           opt_address: "",
           city: "Beaverdale",
