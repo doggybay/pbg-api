@@ -4,7 +4,6 @@ exports.up = function(knex) {
     table.string('first_name').notNullable();
     table.string('last_name').notNullable();
     table.string('email').notNullable();
-    table.string('phone');
     table.timestamps(true, true);
   });
 };
