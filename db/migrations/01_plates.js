@@ -3,8 +3,8 @@ exports.up = function(knex) {
     table.increments();
     table.string('name').notNullable();
     table.text('description').notNullable();
-    table.string('picture').unique().notNullable();
-    table.float('price').unique();
+    table.string('picture').notNullable();
+    table.float('price');
     table.timestamps(true, true);
   })
   
