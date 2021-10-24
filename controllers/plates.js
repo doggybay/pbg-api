@@ -8,9 +8,21 @@ exports.getAllPlates = async (req, res) => {
 
 exports.getOnePlate = async (req, res) => {
   const plateId = req.params.id;
-  const plate = await Plate.query().findById(plateId);
+  try {
+    const plate = await Plate.query().findById(plateId);
 
-  res.json(plate);
+    if (!plate) {
+      throw new Error('Plate does not exist')
+    } else {
+      res.json(plate);
+    }
+    
+  } catch (err) {
+    
+    console.error(err)
+    res.sendStatus(404);
+  }
+  
 };
 
 exports.addOnePlate = async (req, res) => {
