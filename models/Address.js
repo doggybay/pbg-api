@@ -29,7 +29,7 @@ class Address extends Model {
         id: { type: 'integer' },
         customer_id: { type: 'integer' },
         st_address: { type: 'string', minLength: 1, maxLength: 255  },
-        opt_address: { type: 'string', minLength: 1, maxLength: 255  },
+        opt_address: { type: 'string', minLength: 0, maxLength: 255  },
         city: { type: 'string', minLength: 1, maxLength: 255  },
         state: { type: 'string', minLength: 2, maxLength: 2  },
         zip_code: { type: 'integer', minLength: 5, maxLength: 5  }
