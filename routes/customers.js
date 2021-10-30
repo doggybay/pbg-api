@@ -8,5 +8,6 @@ router.get('/customers/:id', customersController.getOneCustomer);
 router.post('/customers', customersController.addOneCustomer);
 router.patch('/customers/:id', customersController.updateOneCustomer);
 router.delete('/customers/:id', customersController.deleteOneCustomer);
+router.delete('/customers', customersController.deleteCustomers);
 
 module.exports = router;

@@ -16,12 +16,13 @@ exports.getOneCustomer = async (req, res) => {
 
 exports.addOneCustomer = async (req, res) => {
   const {first_name, last_name, email, phone, st_address, opt_address, city, state, zip_code} = req.body;
+  const formattedZip = Number(zip_code);
   const address = {
     st_address,
     opt_address,
     city,
     state,
-    zip_code
+    zip_code: formattedZip
   };
   const customer = {
     first_name,
@@ -83,4 +84,32 @@ exports.deleteOneCustomer = async (req, res) => {
   const newDelCust = { ...deletedCustomer, address: [deletedAddress] };
 
   res.json(newDelCust);
+}
+
+exports.deleteCustomers = async (req, res) => {
+  console.log(req.body)
+  const customerIds = req.body;
+  let deletedCustomers = [];
+  
+
+  for (let i = 0; i < customerIds.length; i++) {
+    
+    const deletedAddress = await Address.query().select('customer_id').where('addresses.customer_id', '=', customerIds[i]).del().returning('*');
+    const deletedCustomer = await Customer.query().deleteById(customerIds[i]).returning('*');
+
+    const newDelCust = { ...deletedCustomer, address: [deletedAddress] };
+
+    deletedCustomers.push(newDelCust);
+    console.log("delete loop: ", newDelCust)
+  }
+  
+
+  res.json(deletedCustomers)
+
+  // const deletedAddress = await Address.query().select('customer_id').where('addresses.customer_id', '=', customerId).del().returning('*');
+  // const deletedCustomer = await Customer.query().deleteById(customerId).returning('*');
+
+  // const newDelCust = { ...deletedCustomer, address: [deletedAddress] };
+
+  // res.json(newDelCust);
 }
