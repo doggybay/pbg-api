@@ -49,6 +49,8 @@ exports.updateOneCustomer = async (req, res) => {
   const time = new Date;
   const customerId = req.params.id;
   const {first_name, last_name, email, phone, st_address, opt_address, city, state, zip_code} = req.body;
+
+
   const customer = {
     first_name,
     last_name,
@@ -56,6 +58,7 @@ exports.updateOneCustomer = async (req, res) => {
     phone,
     updated_at: time
   };
+  
   const address = {
     st_address,
     opt_address,
@@ -65,6 +68,7 @@ exports.updateOneCustomer = async (req, res) => {
     updated_at: time
   };
 
+  
   
 
   await Address.query().select('customer_id').where('addresses.customer_id', '=', customerId).patch(address);
