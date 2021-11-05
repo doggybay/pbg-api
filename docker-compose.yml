@@ -1,0 +1,29 @@
+version: "3.9"
+
+volumes:
+  PostgresData:
+
+networks:
+  pbgapi
+
+services:
+  api:
+    build: ./
+    depends_on:
+      - db
+    networks:
+      - pbgapi
+    env_file: ./.env
+    ports:
+      - "5000:5000"
+    command: npm start  
+  db:
+    restart: unless-stopped
+    image: postgres
+    networks:
+      - pbgapi
+    ports:
+      - "5432:5432"
+    env_file: ./.env
+    volumes:
+      - PostgresData:/var/lib/postgresql/data  
