@@ -91,7 +91,7 @@ exports.deleteOneCustomer = async (req, res) => {
 }
 
 exports.deleteCustomers = async (req, res) => {
-  console.log(req.body)
+  
   const customerIds = req.body;
   let deletedCustomers = [];
   
@@ -104,16 +104,8 @@ exports.deleteCustomers = async (req, res) => {
     const newDelCust = { ...deletedCustomer, address: [deletedAddress] };
 
     deletedCustomers.push(newDelCust);
-    console.log("delete loop: ", newDelCust)
+    
   }
-  
 
   res.json(deletedCustomers)
-
-  // const deletedAddress = await Address.query().select('customer_id').where('addresses.customer_id', '=', customerId).del().returning('*');
-  // const deletedCustomer = await Customer.query().deleteById(customerId).returning('*');
-
-  // const newDelCust = { ...deletedCustomer, address: [deletedAddress] };
-
-  // res.json(newDelCust);
-}
+};
