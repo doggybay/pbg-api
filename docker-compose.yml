@@ -23,7 +23,7 @@ services:
       args:
         DATABASE_URL: ${DATABASE_URL} 
     container_name: pbg-api
-    env-file: ./.env
+    env_file: ./.env
     ports:
       - "5000:5000"
     command: npm start  
