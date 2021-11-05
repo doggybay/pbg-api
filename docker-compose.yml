@@ -1,15 +1,11 @@
 version: "3.9"
 
-volumes:
-  PostgresData:
 
-networks:
-  pbgapi:
 
 services:
   db:
-    restart: unless-stopped
     image: postgres
+    restart: unless-stopped
     container_name: pbg-db
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
@@ -21,18 +17,22 @@ services:
       - "5432"
     volumes:
       - PostgresData:/var/lib/postgresql/data  
-  api:
-    build:
-      context: ./
-      args:
-        DATABASE_URL: ${DATABASE_URL}
-        PORT: ${PORT}
-    container_name: pbg-api
-    depends_on:
-      - db
-    networks:
-      - pbgapi
-    ports:
-      - "5000:5000"
-    command: npm start  
-  
+  # api:
+  #   build:
+  #     context: ./
+  #     args:
+  #       DATABASE_URL: ${DATABASE_URL}
+  #       PORT: ${PORT}
+  #   container_name: pbg-api
+  #   depends_on:
+  #     - db
+  #   networks:
+  #     - pbgapi
+  #   ports:
+  #     - "5000:5000"
+  #   command: npm start  
+volumes:
+  PostgresData:
+
+networks:
+  pbgapi:  
