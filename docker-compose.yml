@@ -17,20 +17,20 @@ services:
       - "5432"
     volumes:
       - PostgresData:/var/lib/postgresql/data  
-  # api:
-  #   build:
-  #     context: ./
-  #     args:
-  #       DATABASE_URL: ${DATABASE_URL}
-  #       PORT: ${PORT}
-  #   container_name: pbg-api
-  #   depends_on:
-  #     - db
-  #   networks:
-  #     - pbgapi
-  #   ports:
-  #     - "5000:5000"
-  #   command: npm start  
+  api:
+    build:
+      context: ./
+      args:
+        DATABASE_URL: ${DATABASE_URL}
+        PORT: ${PORT}
+    container_name: pbg-api
+    depends_on:
+      - db
+    networks:
+      - pbgapi
+    ports:
+      - "5000:5000"
+    command: npm start  
 volumes:
   PostgresData:
 
