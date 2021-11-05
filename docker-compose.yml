@@ -9,6 +9,7 @@ networks:
 services:
   api:
     build: ./
+    container_name: pbg-api
     depends_on:
       - db
     networks:
@@ -20,10 +21,11 @@ services:
   db:
     restart: unless-stopped
     image: postgres
+    container_name: pbg-db
     networks:
       - pbgapi
     ports:
-      - "5432:5432"
+      - "5432"
     env_file: ./.env
     volumes:
       - PostgresData:/var/lib/postgresql/data  
