@@ -1,4 +1,4 @@
-let connectionString = process.platform === 'win32' ? 'postgres://db_access:freedom@tyche:5432/pbg' : 'postgres://db_access:freedom@tyche/pbg';
+
   
   module.exports = {
     development: {
