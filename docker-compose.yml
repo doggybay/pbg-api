@@ -4,7 +4,7 @@ volumes:
   PostgresData:
 
 networks:
-  pbgapi
+  pbgapi:
 
 services:
   api:
