@@ -12,9 +12,9 @@ COPY . .
 
 ARG DATABASE_URL
 
-RUN npm run migrate
+# RUN npm run migrate
 
-RUN npm run seed
+# RUN npm run seed
 
 EXPOSE 5000
 
