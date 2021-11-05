@@ -8,5 +8,6 @@ router.get('/plates/:id', platesController.getOnePlate);
 router.post('/plates', platesController.addOnePlate);
 router.patch('/plates/:id', platesController.updateOnePlate);
 router.delete('/plates/:id', platesController.deleteOnePlate);
+router.delete('/plates', platesController.deletePlates);
 
 module.exports = router;

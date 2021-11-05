@@ -50,3 +50,21 @@ exports.deleteOnePlate = async (req, res) => {
 
   res.json(deletedPlate);
 };
+
+exports.deletePlates = async (req, res) => {
+  
+  const plateIds = req.body;
+  let deletedPlates = [];
+  
+
+  for (let i = 0; i < plateIds.length; i++) {
+    
+    const deletedPlate = await Plate.query().deleteById(plateIds[i]).returning('*');
+
+    deletedPlates.push(deletedPlate);
+    
+  }
+  
+
+  res.json(deletedPlates)
+};
