@@ -11,28 +11,22 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_DB: ${POSTGRES_DB}
-    networks:
-      - pbgapi
     ports:
       - "5432"
     volumes:
       - PostgresData:/var/lib/postgresql/data  
   api:
+    depends_on:
+      - db
     build:
       context: ./
       args:
         DATABASE_URL: ${DATABASE_URL}
         PORT: ${PORT}
     container_name: pbg-api
-    depends_on:
-      - db
-    networks:
-      - pbgapi
+    
     ports:
       - "5000:5000"
     command: npm start  
 volumes:
-  PostgresData:
-
-networks:
-  pbgapi:  
+  PostgresData:  
