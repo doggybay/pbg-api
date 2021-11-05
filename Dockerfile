@@ -10,6 +10,8 @@ RUN npm install
 
 COPY . .
 
+ARG DATABASE_URL
+
 RUN npm run migrate
 
 RUN npm run seed
