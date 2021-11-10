@@ -8,6 +8,7 @@ exports.getAllPlates = async (req, res) => {
 
 exports.getOnePlate = async (req, res) => {
   const plateId = req.params.id;
+
   try {
     const plate = await Plate.query().findById(plateId);
 
@@ -19,17 +20,22 @@ exports.getOnePlate = async (req, res) => {
     
   } catch (err) {
     
-    console.error(err)
+    console.error(err);
     res.sendStatus(404);
   }
   
 };
 
 exports.addOnePlate = async (req, res) => {
-  const plate = { ...req.body }
+  const plate = { ...req.body };
+  let newPlate;
 
-  const newPlate = await Plate.query().insert(plate).returning('*');
-  
+  try {
+    newPlate = await Plate.query().insert(plate).returning('*');
+  } catch (err) {
+    res.status(400).send(err)
+  } 
+
   res.json(newPlate)
 };
 
@@ -37,17 +43,30 @@ exports.updateOnePlate = async (req, res) => {
   const time = new Date;
   const plateToUpdate = { ...req.body, updated_at: time };
   const plateId = req.params.id;
+  let updatedPlate;
 
-  const updatedPlate = await Plate.query().findById(plateId).patch(plateToUpdate).returning('*');
-  
+  try {
+    updatedPlate = await Plate.query().findById(plateId).patch(plateToUpdate).returning('*');
+  } catch (err) {
+    res.status(400).send(err)
+  } 
+
   res.json(updatedPlate);
 };
 
 exports.deleteOnePlate = async (req, res) => {
   const plateId = req.params.id;
-
-  const deletedPlate = await Plate.query().deleteById(plateId).returning('*');
-
+  let deletedPlate;
+  
+  try {
+    deletedPlate = await Plate.query().deleteById(plateId).returning('*');
+  } catch (err) {
+    res.send(err)
+  } 
+  
+  if (!deletedPlate) {
+    res.status(204)
+  }
   res.json(deletedPlate);
 };
 
