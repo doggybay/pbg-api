@@ -7,17 +7,25 @@ class Customer extends Model {
 
   static get relationMappings() {
     const Address = require('./Address');
+    const Order = require("./Order");
 
     return {
       address: {
         relation: Model.HasManyRelation,
         modelClass: Address,
         join: {
-          from: 'customers.id',
-          to: 'addresses.customer_id'
+          from: "customers.id",
+          to: "addresses.customer_id",
+        },
+      },
+      orders: {
+        relation: Model.HasManyRelation,
+        modelClass: Order,
+        join: {
+          from: "customers.id",
+          to: "orders.customer_id",
         }
       },
-      
     };
 
   };

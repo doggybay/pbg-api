@@ -2,7 +2,7 @@ const Customer = require('../models/Customer');
 const Address = require('../models/Address');
 
 exports.getAllCustomers = async (req, res) => {
-  const customers = await Customer.query().withGraphFetched('[address]');
+  const customers = await Customer.query().withGraphFetched('[address, orders]');
   
   res.json(customers);
 };

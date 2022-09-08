@@ -9,7 +9,7 @@ class Address extends Model {
   static get relationMappings() {
   
     return {
-      user: {
+      customer: {
         relation: Model.BelongsToOneRelation,
         modelClass: Customer,
         join: {

@@ -5,6 +5,8 @@ exports.up = function(knex) {
     table.integer('plate_id').notNullable();
     table.float('total').notNullable();
     table.integer('quantity').notNullable();
+    table.boolean('is_cancel');
+    table.boolean('is_complete');
     table.timestamps(true, true);
   });
 };
