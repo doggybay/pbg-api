@@ -5,7 +5,7 @@ dotenv.config();
   module.exports = {
     development: {
         client: 'pg',
-        connection: process.env.DATABASE_URL,
+        connection: process.env.DEV_DB_URL,
         migrations: {
             directory: __dirname + '/db/migrations',
           },
